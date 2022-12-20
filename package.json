@@ -9,6 +9,9 @@
     "start": "next start",
     "lint": "next lint --no-cache --fix",
     "type-check": "tsc --project tsconfig.json --pretty --noEmit",
+    "prettier:check": "prettier --check src",
+    "prettier:write": "prettier --write src",
+    "eslint:fix": "eslint --rule 'no-console:error' --fix --ext .ts,.tsx,.js,.jsx src",
     "enable-husky": "husky install && chmod ug+x .husky/*",
     "postbuild": "next-sitemap --config next-sitemap.config.js"
   },
@@ -18,8 +21,6 @@
     "@emotion/react": "^11.10.4",
     "@emotion/styled": "^11.10.4",
     "@svgr/webpack": "^6.3.1",
-    "@toruslabs/torus-embed": "^1.36.1",
-    "firebase": "^9.13.0",
     "framer-motion": "^7.2.1",
     "next": "12.2.5",
     "next-seo": "^5.5.0",
@@ -52,6 +53,26 @@
       "last 1 chrome version",
       "last 1 firefox version",
       "last 1 safari version"
+    ]
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx,ts,tsx}": [
+      "yarn prettier:write",
+      "yarn eslint:fix",
+      "yarn test --onlyChanged=true --watchAll=false --passWithNoTests"
+    ],
+    "*.{js,jsx,ts,tsx}": [
+      "yarn eslint --rule '@typescript-eslint/no-unused-vars:error' --fix"
+    ]
+  },
+  "engines": {
+    "npm": "please-use-yarn",
+    "node": "16",
+    "yarn": ">=1.22"
+  },
+  "jest": {
+    "transformIgnorePatterns": [
+      "//node_modules"
     ]
   }
 }
