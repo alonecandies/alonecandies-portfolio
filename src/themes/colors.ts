@@ -9,8 +9,8 @@ const extendedColors: DeepPartial<Record<string, Theme['colors']['blackAlpha']>>
     400: '#00e2a4',
     500: '#00da93',
     600: '#09c986',
-    700: '#06b476',
-    800: '#00a368',
+    700: '#8200c9',
+    800: '#11e8bb',
     900: '#05814f',
   },
   secondary: {
